@@ -6,11 +6,34 @@ import facebook4j.auth.AccessToken;
 import facebook4j.internal.org.json.JSONArray;
 import facebook4j.internal.org.json.JSONObject;
 
+
+/*
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+*/
+
 /**
  * Created by knoldus on 8/5/16.
  */
 
 public class fb {
+
+    /*
+    get access token by default
+    private static final long serialVersionUID = -7453606094644144082L;
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Facebook facebook = new FacebookFactory().getInstance();
+        request.getSession().setAttribute("facebook", facebook);
+        StringBuffer callbackURL = request.getRequestURL();
+        int index = callbackURL.lastIndexOf("/");
+        callbackURL.replace(index, callbackURL.length(), "").append("/callback");
+        response.sendRedirect(facebook.getOAuthAuthorizationURL(callbackURL.toString()));
+    }*/
 
     public static void main(String arg[]) {
 

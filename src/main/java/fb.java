@@ -41,27 +41,30 @@ public class fb {
         try {
 
             facebook.setOAuthAppId("","");
-            String accessTokenString = "EAACEdEose0cBADnENNCwy0tzS1WtWZCDgainTMXJiBNN3JvXsO2RQbU4n7gXd4vC285hdHQjJGyUrDJeYWyu8gVi5r3ZBiS67EHQxRXWgURtSUqhX85XK7DZC0yLZAPzlRQMODT2kEaTGlLRpEaiduA5OKd0QLabNxh8ZACNzywkVZBnmFiIL1";
+            String accessTokenString = "EAACEdEose0cBALL6826lsUb4co1Y5mTUhZCHZAimKyEj8A2T9WeyAEZBl4KVOAbsBfTrfFItWcjAZAdEY5oB02T4GuaU4EOOQs1DZCfroryjZBVlp22ytkix6ifSbnu0jIETCPOtO0ftNhz05TwGRZCxZCWYi56vUGfV3ZBVVgs7TW1aJ9jKfzrqb";
             AccessToken at = new AccessToken(accessTokenString);
             facebook.setOAuthAccessToken(at);
 
 
            //facebook.postStatusMessage("Hello World from Facebook4J.");
 
-            String query = "SELECT movies,first_name,last_name from user where uid IN (SELECT uid2 FROM friend WHERE uid1 = me())";
-            String friendquerry="SELECT movies,email from user where uid = me()";
+            String query = "SELECT movies,first_name,last_name,uid from user where uid IN (SELECT uid2 FROM friend WHERE uid1 = me())";
+            String friendquerry="SELECT movies,email,uid from user where uid = me()";
             JSONArray jsonArray = facebook.executeFQL(query);
             JSONArray jsonArrayFriend = facebook.executeFQL(friendquerry);
-            System.out.println("\n\n My Friends Movies : ");
+            System.out.println("\n\n My Friends Movies : "+jsonArray.length());
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 System.out.print("Name : "+jsonObject.get("first_name")+" "+jsonObject.get("last_name")+"\n");
+                System.out.println("User Id : "+jsonObject.get("uid")+",");
                 System.out.println(jsonObject.get("movies")+",");
+
             }
            System.out.println("\n\nMy Movies and email : ");
             for (int i = 0; i < jsonArrayFriend.length(); i++) {
                 JSONObject jsonObject = jsonArrayFriend.getJSONObject(i);
                 System.out.println("My email : "+jsonObject.get("email"));
+                System.out.println("User Id : "+jsonObject.get("uid"));
                 System.out.print(jsonObject.get("movies")+",");
             }
 
